@@ -15,14 +15,13 @@ import java.util.Optional;
 @CrossOrigin(origins = {"http://localhost:3000", "http://localhost:4200"})
 @RestController
 public class CourseController {
+
     @Autowired
     ICourseService courseService;
-//    CoursesHardcodedService courseManagementService;
 
     @PostMapping("/instructors/{username}/courses")
     public ResponseEntity<Void> createCourse(@PathVariable String username, @RequestBody Course course) {
 
-//        System.out.println("id= " + course.getId());
         Course createdCourse = courseService.insertCourse(course);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -48,10 +47,6 @@ public class CourseController {
     public ResponseEntity<Void> deleteCourse(@PathVariable String username, @PathVariable int id) {
 
         courseService.deleteById(id);
-
-//        if (course != null) {
-//            return ResponseEntity.noContent().build();
-//        }
 
         return ResponseEntity.noContent().build();
     }
